@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <script defer type="module" src="./src/script.ts"></script>
+    <title>Kampagnenanforderung</title>
+  </head>
+  <body>
+    <h1>Kampagnen&shy;anforderung</h1>
+    <form class="flexCol">
+      <div class="flexCol inputGroup">
+        <label for="kampagnenname">Kampagnenname*</label>
+        <input type="text" name="kampagnenname" placeholder="Lecker Bierchen" required="required" />
+      </div>
+      <div class="flexCol inputGroup">
+        <label>Laufzeit</label>
+        <input type="text" name="laufzeit" />
+      </div>
+      <div class="flexCol inputGroup">
+        <label>Ziel-URL*</label>
+        <textarea name="zielurl" placeholder="https://www.lecker-bierchen.beer/lecker" rows="2" maxlength="500" required="required"></textarea>
+      </div>
+      <div class="flexCol inputGroup">
+        <label>UTM-Kampagne</label>
+        <input type="text" name="utmcampaign" placeholder="leckerBierchen42069" maxlength="150" />
+      </div>
+      <div class="flexCol inputGroup">
+        <label for="kanal">Kanal + Werbeschlüssel</label>
+        <textarea name="kanal" placeholder="ON-TL-TGW&#10;WA-TL-TGW" rows="2" maxlength="300"></textarea>
+      </div>
+      <div class="flexCol inputGroup">
+        <label>Sonstiges</label>
+        <textarea name="sonstiges" placeholder="Fixplatzierung SN &amp; S24" rows="2" maxlength="150"></textarea>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Bewerbung:</h2>
+      <div class="flexCol inputGroup">
+        <div class="checkboxCont">
+          <input type="checkbox" name="displaySN" value="Display (SN)" />
+          <label class="checkboxLabel">Display (SN)</label>
+        </div>
+        <div class="checkboxCont">
+          <input type="checkbox" name="displayS24" value="Display (Salzburg24)" />
+          <label class="checkboxLabel">Display (Salzburg24)</label>
+        </div>
+        <div class="checkboxCont">
+          <input type="checkbox" name="googleAds" value="GoogleAds" />
+          <label class="checkboxLabel">GoogleAds</label>
+        </div>
+        <div class="checkboxCont">
+          <input type="checkbox" name="social" value="Social" />
+          <label class="checkboxLabel">Social</label>
+        </div>
+        <div class="checkboxCont">
+          <input type="checkbox" name="nlFreizeit" value="Newsletter (Freizeit)" />
+          <label class="checkboxLabel">Newsletter (Freizeit)</label>
+        </div>
+        <div class="checkboxCont">
+          <input type="checkbox" name="nlAktionen" value="Newsletter (AktionenAngebote)" />
+          <label class="checkboxLabel">Newsletter (Aktionen &amp; Angebote)</label>
+        </div>
+        <div class="checkboxCont">
+          <input type="checkbox" name="albus" value="Albus" />
+          <label class="checkboxLabel">Busdisplay</label>
+        </div>
+      </div>
+
+      <div id="displayCont">
+        <div class="divider"></div>
+        <div class="flexRow">
+          <div id="displayWM">
+            <h2>Display WM:</h2>
+            <div class="flexCol inputGroup">
+              <div class="checkboxCont">
+                <input type="checkbox" name="MR" value="MR-300x250" />
+                <label class="checkboxLabel" for="MR">Medium Rectangle 300x250</label>
+              </div>
+              <div class="checkboxCont">
+                <input type="checkbox" name="BB" value="BB-970x250" />
+                <label class="checkboxLabel" for="BB">Billboard 970x250</label>
+              </div>
+              <div class="checkboxCont">
+                <input type="checkbox" name="HPA" value="HPA-300x600" />
+                <label class="checkboxLabel" for="HPA">HalfPageAd 300x600</label>
+              </div>
+              <div class="checkboxCont">
+                <input type="checkbox" name="SL" value="SL" />
+                <label class="checkboxLabel" for="SL">Sitelink</label>
+              </div>
+            </div>
+          </div>
+          <div id="googleAdsWM">
+            <h2>GoogleAds WM:</h2>
+            <div class="flexCol inputGroup">
+              <div class="checkboxCont">
+                <input type="checkbox" name="gMR" value="MR-300x250" />
+                <label class="checkboxLabel" for="gMR">Medium Rectangle 300x250</label>
+              </div>
+              <div class="checkboxCont">
+                <input type="checkbox" name="gLB" value="LB-728x90" />
+                <label class="checkboxLabel" for="gLB">Leaderboard 728x90</label>
+              </div>
+              <div class="checkboxCont">
+                <input type="checkbox" name="gSS" value="SS-160x600" />
+                <label class="checkboxLabel" for="gSS">Skyscraper 160x600</label>
+              </div>
+              <div class="checkboxCont">
+                <input type="checkbox" name="gPM" value="Performance Max" />
+                <label class="checkboxLabel" for="gPM">Performance Max</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="socialWM">
+        <div class="divider"></div>
+        <h2>Social Plattform:</h2>
+        <div class="flexCol inputGroup">
+          <div class="checkboxCont">
+            <input type="checkbox" name="meta" value="Meta" />
+            <label class="checkboxLabel" for="meta">Meta</label>
+          </div>
+          <div class="checkboxCont">
+            <input type="checkbox" name="tiktok" value="TikTok" />
+            <label class="checkboxLabel" for="tiktok">TikTok</label>
+          </div>
+          <div class="checkboxCont">
+            <input type="checkbox" name="linkedin" value="LinkedIn" />
+            <label class="checkboxLabel" for="linkedin">LinkedIn</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Bewerbungs&shy;text*:</h2>
+      <div class="flexCol inputGroup">
+        <textarea name="adText" placeholder="Mmmmhh!&#10;Jetzt lecker Bierchen trinken und lecker Bierchen trinken.&#10;CTA: ZUM BIERCHEN" rows="3" maxlength="220" required="required"></textarea>
+        <div class="divider"></div>
+      </div>
+
+      <button type="button" class="btn" id="generatePDF">get PDF</button>
+    </form>
+  </body>
+</html>
