@@ -1,0 +1,180 @@
+@layer normalize, main;
+
+@import url("./normalize.css") layer(normalize);
+
+@layer main {
+  /* VARIABLES: */
+  :root {
+    --textColor: oklch(70% 0 0);
+    --activeTextColor: oklch(92% 0 0);
+    --spacing: 2rem;
+  }
+
+  /* RESET: */
+  * {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+  }
+
+  body {
+    padding: 5rem 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100svh;
+    background-color: #353535;
+    overflow: auto;
+  }
+
+  /* HELPERS & SETUP: */
+  .flexRow,
+  .flexCol {
+    display: flex;
+    align-items: stretch;
+  }
+  .flexRow {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .flexCol {
+    flex-direction: column;
+    justify-content: start;
+  }
+
+  #displayCont,
+  #displayWM,
+  #googleAdsWM,
+  #socialWM {
+    display: none;
+  }
+
+  /* MAIN: */
+  h1 {
+    margin: calc(var(--spacing) * 2) 0px;
+    color: var(--textColor);
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  h2 {
+    margin: 0 0 calc(var(--spacing) / 2);
+    color: var(--textColor);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    margin: var(--spacing) 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(245, 245, 245, 0.5) 50%, transparent 100%);
+  }
+
+  /* FORM: */
+  form {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .inputGroup {
+    margin-bottom: 1rem;
+
+    &:has(.checkboxCont) {
+      gap: 0.5rem;
+    }
+  }
+
+  label {
+    padding-left: 0.4rem;
+    color: var(--textColor);
+    font-weight: 700;
+    font-size: 1.15rem;
+  }
+
+  input[type="text"],
+  textarea {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    font-size: 1.1rem;
+    color: var(--activeTextColor);
+    border: 2px solid var(--textColor);
+    border-radius: 6px;
+    background: transparent;
+    outline: none;
+    transition: border 0.2s ease;
+
+    &:focus {
+      border: 2px solid var(--activeTextColor);
+      &:invalid {
+        border: 2px solid oklch(50% 0.2 30);
+      }
+    }
+  }
+
+  textarea {
+    resize: vertical;
+
+    &::-webkit-resizer {
+      background: linear-gradient(135deg, transparent 60%, var(--textColor) 60%, var(--textColor) 65%, transparent 65%, transparent 75%, var(--textColor) 75%, var(--textColor) 80%, transparent 80%);
+    }
+  }
+
+  /* CHECKBOX: */
+  .checkboxCont {
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 0.4rem;
+  }
+
+  input[type="checkbox"] {
+    width: 1.5rem;
+    height: 1.5rem;
+    accent-color: #fff;
+    cursor: pointer;
+
+    &:checked + .checkboxLabel {
+      color: var(--activeTextColor);
+    }
+  }
+
+  .checkboxLabel {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  /* BUTTON: */
+  .btn {
+    margin: 5px;
+    padding: 0.5em 1em;
+    width: fit-content;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--activeTextColor);
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(145deg, #393939, #303030, #303030, #393939);
+    background-size: 200% 100%;
+    background-position: 0% 0%;
+    box-shadow: 5px 5px 12px #1b1b1b, -5px -5px 12px #505050;
+    transition: all 0.15s ease;
+
+    &:hover,
+    &:focus-visible {
+      background-position: 100% 0%;
+    }
+
+    &:active {
+      background: #353535;
+      box-shadow: inset 5px 5px 12px #1b1b1b, inset -5px -5px 12px #505050;
+    }
+  }
+}
