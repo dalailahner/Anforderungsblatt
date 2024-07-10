@@ -115,6 +115,11 @@
     }
   }
 
+  input[type="text"] + span {
+    padding: 3px 0;
+    transform: translateX(-25%);
+  }
+
   textarea {
     resize: vertical;
 
