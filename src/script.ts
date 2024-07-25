@@ -35,6 +35,12 @@ const EasepickObj = new easepick.create({
   plugins: [RangePlugin, LockPlugin, KbdPlugin],
 });
 
+window.addEventListener("load", (event) => {
+  // fix the easepickIcon position
+  const easepickIcon: HTMLSpanElement | null = document?.querySelector('.inputGroup:has(input[name="laufzeit"]) > span');
+  easepickIcon?.removeAttribute("style");
+});
+
 Form.addEventListener("change", () => {
   if (Form.displaySN.checked || Form.displayS24.checked || Form.googleAds.checked) {
     Targets.get("displayCont").style.display = "block";
