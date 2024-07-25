@@ -82,6 +82,22 @@
   .inputGroup {
     margin-bottom: 1rem;
 
+    &:has(input[name="laufzeit"]) {
+      position: relative;
+
+      /* easepickIcon: */
+      & > span {
+        padding: 0;
+        height: calc(1lh + 14px);
+        display: flex;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        font-size: 1.1rem;
+        transform: none;
+      }
+    }
+
     &:has(.checkboxCont) {
       gap: 0.5rem;
     }
