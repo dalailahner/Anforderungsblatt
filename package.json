@@ -11,15 +11,15 @@
   "devDependencies": {
     "browserslist": "^4.23.2",
     "lightningcss": "^1.25.1",
-    "typescript": "^5.5.3",
-    "vite": "^5.3.3"
+    "typescript": "^5.5.4",
+    "vite": "^5.3.4"
   },
   "dependencies": {
     "@easepick/core": "^1.2.1",
     "@easepick/kbd-plugin": "^1.2.1",
     "@easepick/lock-plugin": "^1.2.1",
     "@easepick/range-plugin": "^1.2.1",
-    "@pdfme/common": "^4.0.2",
-    "@pdfme/generator": "^4.0.2"
+    "@pdfme/common": "^4.2.2",
+    "@pdfme/generator": "^4.2.2"
   }
 }
