@@ -7,19 +7,19 @@ import { KbdPlugin } from "@easepick/kbd-plugin";
 import { RangePlugin } from "@easepick/range-plugin";
 import { LockPlugin } from "@easepick/lock-plugin";
 
-const Form: any = document.getElementsByTagName("FORM")[0];
+const Form: any = document?.getElementsByTagName("FORM")[0];
 const checkmark: string =
   "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><path d='M49.3 5.9a111 111 0 0 0-27.5 39.7 3.5 3.5 0 0 1-6.2.4C11.3 39 7 34.2 1 29c-1.3-1-1.3-3-.1-4.2.9-.8 2.2-1 3.3-.4 3 1.6 9.2 5.2 14.1 10.9 0 0 6.8-16.6 28.4-32.6a2 2 0 0 1 2.5 3.2Z' style='fill:#191919'/></svg>";
 
-const Targets = new Map<string, any>([
-  ["displayCont", document.querySelector("#displayCont")],
-  ["displayWM", document.querySelector("#displayWM")],
-  ["googleAdsWM", document.querySelector("#googleAdsWM")],
-  ["socialWM", document.querySelector("#socialWM")],
+const Targets = new Map<string, HTMLElement | null>([
+  ["displayCont", document?.querySelector("#displayCont")],
+  ["displayWM", document?.querySelector("#displayWM")],
+  ["googleAdsWM", document?.querySelector("#googleAdsWM")],
+  ["socialWM", document?.querySelector("#socialWM")],
 ]);
 
 const EasepickObj = new easepick.create({
-  element: Form.laufzeit,
+  element: Form?.laufzeit,
   css: ["https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css"],
   zIndex: 0,
   readonly: false,
@@ -35,33 +35,22 @@ const EasepickObj = new easepick.create({
   plugins: [RangePlugin, LockPlugin, KbdPlugin],
 });
 
-window.addEventListener("load", (event) => {
+window.addEventListener("load", () => {
   // fix the easepickIcon position
   const easepickIcon: HTMLSpanElement | null = document?.querySelector('.inputGroup:has(input[name="laufzeit"]) > span');
   easepickIcon?.removeAttribute("style");
 });
 
 Form.addEventListener("change", () => {
-  if (Form.displaySN.checked || Form.displayS24.checked || Form.googleAds.checked) {
-    Targets.get("displayCont").style.display = "block";
-  } else {
-    Targets.get("displayCont").style.display = "none";
-  }
-  if (Form.displaySN.checked || Form.displayS24.checked) {
-    Targets.get("displayWM").style.display = "block";
-  } else {
-    Targets.get("displayWM").style.display = "none";
-  }
-  if (Form.googleAds.checked) {
-    Targets.get("googleAdsWM").style.display = "block";
-  } else {
-    Targets.get("googleAdsWM").style.display = "none";
-  }
-  if (Form.social.checked) {
-    Targets.get("socialWM").style.display = "block";
-  } else {
-    Targets.get("socialWM").style.display = "none";
-  }
+  const displaySNCheck: boolean | undefined = Form?.displaySN.checked;
+  const displayS24Check: boolean | undefined = Form?.displayS24.checked;
+  const googleAdsCheck: boolean | undefined = Form?.googleAds.checked;
+  const socialCheck: boolean | undefined = Form?.social.checked;
+
+  displaySNCheck || displayS24Check || googleAdsCheck ? toggleDisplay(Targets?.get("displayCont"), true) : toggleDisplay(Targets?.get("displayCont"), false);
+  displaySNCheck || displayS24Check ? toggleDisplay(Targets?.get("displayWM"), true) : toggleDisplay(Targets?.get("displayWM"), false);
+  googleAdsCheck ? toggleDisplay(Targets?.get("googleAdsWM"), true) : toggleDisplay(Targets?.get("googleAdsWM"), false);
+  socialCheck ? toggleDisplay(Targets?.get("socialWM"), true) : toggleDisplay(Targets?.get("socialWM"), false);
 });
 
 document.querySelector("#generatePDF")?.addEventListener("click", () => {
@@ -110,4 +99,16 @@ async function generatePDF() {
   const blob = new Blob([pdf.buffer], { type: "application/pdf" });
 
   window.open(URL.createObjectURL(blob));
+}
+
+// FUNCTIONS:
+function toggleDisplay(el: HTMLElement | null | undefined, block: boolean) {
+  if (el && block) {
+    el.style.display = "block";
+    return;
+  }
+  if (el && !block) {
+    el.style.display = "none";
+  }
+  console.error(`${el} is not available`);
 }
