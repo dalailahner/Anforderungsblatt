@@ -1,7 +1,7 @@
 import type { Template } from "@pdfme/common";
 import { text, svg } from "@pdfme/schemas";
 import { generate } from "@pdfme/generator";
-import PDFtemplate from "../public/PDFtemplate.json";
+import PDFtemplate from "./PDFtemplate.json";
 import { easepick } from "@easepick/core";
 import { KbdPlugin } from "@easepick/kbd-plugin";
 import { RangePlugin } from "@easepick/range-plugin";
