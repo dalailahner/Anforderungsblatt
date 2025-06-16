@@ -16,6 +16,9 @@ const Targets = new Map<string, HTMLElement | null>([
   ["displayWM", document?.querySelector("#displayWM")],
   ["googleAdsWM", document?.querySelector("#googleAdsWM")],
   ["socialWM", document?.querySelector("#socialWM")],
+  ["newsletterCont", document?.querySelector("#newsletterCont")],
+  ["newsletterPost", document?.querySelector("#newsletterPost")],
+  ["newsletterBanner", document?.querySelector("#newsletterBanner")],
 ]);
 
 const EasepickObj = new easepick.create({
@@ -46,11 +49,16 @@ Form.addEventListener("change", () => {
   const displayS24Check: boolean | undefined = Form?.displayS24.checked;
   const googleAdsCheck: boolean | undefined = Form?.googleAds.checked;
   const socialCheck: boolean | undefined = Form?.social.checked;
+  const nlPostCheck: boolean | undefined = Form?.nlPost.checked;
+  const nlBannerCheck: boolean | undefined = Form?.nlBanner.checked;
 
-  displaySNCheck || displayS24Check || googleAdsCheck ? toggleDisplay(Targets?.get("displayCont"), true) : toggleDisplay(Targets?.get("displayCont"), false);
-  displaySNCheck || displayS24Check ? toggleDisplay(Targets?.get("displayWM"), true) : toggleDisplay(Targets?.get("displayWM"), false);
-  googleAdsCheck ? toggleDisplay(Targets?.get("googleAdsWM"), true) : toggleDisplay(Targets?.get("googleAdsWM"), false);
-  socialCheck ? toggleDisplay(Targets?.get("socialWM"), true) : toggleDisplay(Targets?.get("socialWM"), false);
+  toggleDisplay(Targets?.get("displayCont"), displaySNCheck || displayS24Check || googleAdsCheck);
+  toggleDisplay(Targets?.get("displayWM"), displaySNCheck || displayS24Check);
+  toggleDisplay(Targets?.get("googleAdsWM"), googleAdsCheck);
+  toggleDisplay(Targets?.get("socialWM"), socialCheck);
+  toggleDisplay(Targets?.get("newsletterCont"), nlPostCheck || nlBannerCheck);
+  toggleDisplay(Targets?.get("newsletterPost"), nlPostCheck);
+  toggleDisplay(Targets?.get("newsletterBanner"), nlBannerCheck);
 });
 
 document.querySelector("#generatePDF")?.addEventListener("click", () => {
@@ -79,8 +87,11 @@ async function generatePDF() {
       meta: Form.meta.checked ? checkmark : "",
       tiktok: Form.tiktok.checked ? checkmark : "",
       linkedin: Form.linkedin.checked ? checkmark : "",
-      nlFreizeit: Form.nlFreizeit.checked ? checkmark : "",
-      nlAktionen: Form.nlAktionen.checked ? checkmark : "",
+      // TODO: change the template so the newsletter things are correct:
+      freizeitNlPost: Form.freizeitNlPost.checked ? checkmark : "",
+      aktionenangeboteNlPost: Form.aktionenangeboteNlPost.checked ? checkmark : "",
+      freizeitNlBanner: Form.freizeitNlBanner.checked ? checkmark : "",
+      alleNlBanner: Form.alleNlBanner.checked ? checkmark : "",
       albus: Form.albus.checked ? checkmark : "",
       MR: Form.MR.checked ? checkmark : "",
       BB: Form.BB.checked ? checkmark : "",
@@ -102,7 +113,7 @@ async function generatePDF() {
 }
 
 // FUNCTIONS:
-function toggleDisplay(el: HTMLElement | null | undefined, block: boolean) {
+function toggleDisplay(el: HTMLElement | null | undefined, block: boolean | undefined) {
   if (el && block) {
     el.style.display = "block";
     return;
