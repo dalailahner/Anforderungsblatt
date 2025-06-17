@@ -38,6 +38,9 @@ const EasepickObj = new easepick.create({
   plugins: [RangePlugin, LockPlugin, KbdPlugin],
 });
 
+///////////
+// EVENTS:
+
 window.addEventListener("load", () => {
   // fix the easepickIcon position
   const easepickIcon: HTMLSpanElement | null = document?.querySelector('.inputGroup:has(input[name="laufzeit"]) > span');
@@ -69,6 +72,9 @@ document.querySelector("#generatePDF")?.addEventListener("click", () => {
   }
 });
 
+//////////////
+// FUNCTIONS:
+
 async function generatePDF() {
   const template: Template = PDFtemplate;
   const plugins = { text, svg };
@@ -87,7 +93,6 @@ async function generatePDF() {
       meta: Form.meta.checked ? checkmark : "",
       tiktok: Form.tiktok.checked ? checkmark : "",
       linkedin: Form.linkedin.checked ? checkmark : "",
-      // TODO: change the template so the newsletter things are correct:
       freizeitNlPost: Form.freizeitNlPost.checked ? checkmark : "",
       aktionenangeboteNlPost: Form.aktionenangeboteNlPost.checked ? checkmark : "",
       freizeitNlBanner: Form.freizeitNlBanner.checked ? checkmark : "",
@@ -112,14 +117,15 @@ async function generatePDF() {
   window.open(URL.createObjectURL(blob));
 }
 
-// FUNCTIONS:
 function toggleDisplay(el: HTMLElement | null | undefined, block: boolean | undefined) {
+  console.log("ELEMENT: ", el);
   if (el && block) {
     el.style.display = "block";
     return;
   }
   if (el && !block) {
     el.style.display = "none";
+    return;
   }
   console.error(`${el} is not available`);
 }
