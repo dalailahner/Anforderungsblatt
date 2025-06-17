@@ -118,7 +118,6 @@ async function generatePDF() {
 }
 
 function toggleDisplay(el: HTMLElement | null | undefined, block: boolean | undefined) {
-  console.log("ELEMENT: ", el);
   if (el && block) {
     el.style.display = "block";
     return;
