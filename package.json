@@ -9,10 +9,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "browserslist": "^4.28.1",
+    "browserslist": "^4.29.5",
     "lightningcss": "^1.31.1",
     "typescript": "^5.9.3",
-    "vite": "8.x.x"
+    "vite": "8.3.8"
   },
   "dependencies": {
     "@easepick/core": "^1.2.1",
